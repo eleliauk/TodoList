@@ -4,7 +4,7 @@ function TodoFilter({ todos, setFilter, clearComplete }) {
             <span className="todo-count">{todos.length} items left</span>
             <ul className="filters">
                 <li>
-                    <a onClick={() => setFilter('all')} className="selected">All</a>
+                    <a onClick={() => setFilter('all')} >All</a>
                 </li>
                 <li>
                     <a onClick={() => setFilter('active')}>Active</a>
