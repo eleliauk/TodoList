@@ -62,13 +62,15 @@ function App() {
     };
 
     return (
-        <section className="todoapp" style={{margin:" 0 auto"}}>
+
+        <section className="todoapp"  >
             <AddTodo addTodo={addTodo} />
             <Todolist  updateTodo={updateTodo} todos={getFilteredTodos()} deleteTodo={deleteTodo} toggleTodo={toggleTodo}
 
             />
             <TodoFilter setFilter={setFilter} filter={filter} todos={getFilteredTodos()} clearComplete={clearCompleted}/>
         </section>
+
     );
 }
 

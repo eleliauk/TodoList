@@ -82,7 +82,7 @@ function Todolist({ updateTodo, todos, toggleTodo, deleteTodo }) {
                                 <input
                                     type="text"
                                     value={editedText}
-                                    onChange={(e) => setEditedText(e.target.value)}
+                                    onChange={(event) => setEditedText(event.target.value)}
                                     onBlur={() => handleSave(todo.id)}
                                     autoFocus
                                 />
