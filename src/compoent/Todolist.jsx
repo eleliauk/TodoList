@@ -10,6 +10,13 @@ function Todolist({ updateTodo, todos, toggleTodo, deleteTodo }) {
     const handleToggleAll = () => {
         todos.forEach(todo => toggleTodo(todo.id));
     };
+    const markAllAsComplete = () => {
+        todos.map(todo => {
+            if (!todo.completed) {
+                toggleTodo(todo.id);
+            }
+        });
+    };
   /*  const handleEdit = (todo) => {
         setEditingId(todo.id);
         setEditingText(todo.text);
@@ -42,26 +49,17 @@ function Todolist({ updateTodo, todos, toggleTodo, deleteTodo }) {
                     type="checkbox"
                     onChange={handleToggleAll}
                     checked={todos.every(todo => todo.completed)}
+                    data-testid="toggle-all"
                 />
-                <label htmlFor="toggle-all">Mark all as complete</label>
+                <label htmlFor="toggle-all"     onClick={
+                    markAllAsComplete
+                }>Mark all as complete</label>
             </div>
             <ul className="todo-list">
                 {todos.map(todo => (
                     <li key={todo.id} className={todo.completed ? 'completed' : '!completed'}>
                         <div className="view">
-                            {/*{editingId === todo.id ? (
-                                <input
-                                    type="text"
-                                    value={editingText}
-                                    onChange={handleEditChange}
-                                    onBlur={() => handleEditSubmit(todo.id)}
-                                    autoFocus
-                                />
-                            ) : (
-                                <label onDoubleClick={() => handleEdit(todo)}>
-                                    {todo.text}
-                                </label>
-                            )}*/}
+
                             <input
                                 className="toggle"
                                 type="checkbox"
