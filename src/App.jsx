@@ -28,14 +28,6 @@ function App() {
         // 使用更新后的数组来设置状态
         setTodos(updatedTodos);
     }
-
-    /* const editTodo = (id, newText) => {
-        setTodos(todos =>
-            todos.map(todo =>
-                todo.id === id ? { ...todo, text: newText } : todo
-            )
-        );
-    };*/
     const deleteTodo = (id) => {
         setTodos(todos.filter(todo => todo.id !== id));
     };

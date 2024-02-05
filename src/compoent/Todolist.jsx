@@ -1,41 +1,26 @@
 import { useEffect, useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 function Todolist({ updateTodo, todos, toggleTodo, deleteTodo }) {
-   /* const [editingId, setEditingId] = useState(null);
-    const [editingText, setEditingText] = useState("");*/
     // 状态：追踪哪个待办事项正在被编辑
     const [editing, setEditing] = useState(null);
     // 状态：编辑时的文本
     const [editedText, setEditedText] = useState("");
+
     const handleToggleAll = () => {
         todos.forEach(todo => toggleTodo(todo.id));
     };
     const markAllAsComplete = () => {
         todos.map(todo => {
             if (!todo.completed) {
-                toggleTodo(todo.id);
+               toggleTodo(todo.id);
             }
         });
     };
-  /*  const handleEdit = (todo) => {
-        setEditingId(todo.id);
-        setEditingText(todo.text);
-    };
-
-  const handleEditChange = (event) => {
-        setEditingText(event.target.value);
-    };
-
- const handleEditSubmit = (todoId) => {
-
-        setEditingId(null);
-        setEditingText("");
-    };*/
     const handleEdit = (todo) => {
         setEditing(todo.id);
         setEditedText(todo.text);
     };
-
     // 保存编辑
     const handleSave = (id) => {
         updateTodo(id, editedText);
@@ -59,23 +44,12 @@ function Todolist({ updateTodo, todos, toggleTodo, deleteTodo }) {
                 {todos.map(todo => (
                     <li key={todo.id} className={todo.completed ? 'completed' : '!completed'}>
                         <div className="view">
-
                             <input
                                 className="toggle"
                                 type="checkbox"
                                 checked={todo.completed}
                                 onChange={() => toggleTodo(todo.id)}
-
                             />
-                        {/*    <input
-                                type="text"
-                                value={editingText}
-                              onChange={handleEditChange}
-                                onBlur={() => handleEditSubmit(todo.id)}
-                                autoFocus
-                            />*/}
-                          {/*  ):*/}
-                   {/* <label >{todo.text}</label>*/}
                             {editing === todo.id ? (
                                 <input
                                     type="text"
@@ -83,6 +57,7 @@ function Todolist({ updateTodo, todos, toggleTodo, deleteTodo }) {
                                     onChange={(event) => setEditedText(event.target.value)}
                                     onBlur={() => handleSave(todo.id)}
                                     autoFocus
+                                    className="new-todo"
                                 />
                             ) : (
                                 <label onDoubleClick={() => handleEdit(todo)}>
@@ -92,8 +67,11 @@ function Todolist({ updateTodo, todos, toggleTodo, deleteTodo }) {
                             <button
                                 className="destroy"
                                 onClick={() => deleteTodo(todo.id)}
-                                style={
+                               /* style={
                                     { width: "10px", height: "10px" }
+                                }*/
+                                style={
+                                    {borderRadius:"50%"}
                                 }
                             ></button>
                         </div>
